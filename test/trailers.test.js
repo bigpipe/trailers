@@ -1,9 +1,12 @@
 describe('trailers', function () {
   'use strict';
 
-  var res = require('http').ServerResponse.prototype
+  var request = require('request')
+    , http = require('http')
+    , res = http.ServerResponse.prototype
     , setHeader = res.setHeader
-    , end = res.end;
+    , end = res.end
+    , port = 2222;
 
   var chai = require('chai')
     , expect = chai.expect;
@@ -27,5 +30,25 @@ describe('trailers', function () {
 
   it('introduces the `trailers` object', function () {
     expect(res.trailers).to.be.a('object');
+  });
+
+  it('doesnt throw when you write multiple headers', function (done) {
+    var server = http.createServer(function (req, res) {
+      res.setHeader('Content-Type', 'text/html');
+      res.write('foo');
+
+      setTimeout(function () {
+        res.setHeader('X-WhatEver', 'value');
+        res.end();
+      }, 10);
+    });
+
+    server.listen(port, function () {
+      request('http://localhost:'+ port, function (err, res) {
+        expect(res.trailers['x-whatever']).to.equal('value');
+        server.close();
+        done(err);
+      });
+    });
   });
 });
