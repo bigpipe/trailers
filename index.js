@@ -1,46 +1,18 @@
 'use strict';
 
 var res = require('http').ServerResponse.prototype;
+
+//
+// Prevent double overrides of this module.
+//
 if (res._hasTrailersPatch) return;
 
-//
-// We don't need to patch the `writeHead` method if the connect has introduced
-// an `header` event. This code is an exact copy of connect and is copyrighted
-// by sencha/connect.
-//
-if (!res._hasConnectPatch) {
-  var writeHead = res.writeHead;
-
-  /**
-   * Did we emit the `header` event.
-   *
-   * @type {Boolean}
-   * @private
-   */
-  res._emittedHeader = false;
-
-  /**
-   * Write the HTTP headers to the stream.
-   *
-   * @param {Number} statusCode The statusCode of the request.
-   * @Param {String} reasonPhrase The reasonPhrase of the statusCode.
-   */
-  res.writeHead = function patchedWriteHead(statusCode, reasonPhrase, headers) {
-    if (typeof reasonPhrase === 'object') headers = reasonPhrase;
-    if (typeof headers === 'object') {
-      for (var key in headers) {
-        if (headers.hasOwnProperty(key)) {
-          this.setHeader(key, headers[key]);
-        }
-      }
-    }
-
-    if (!this._emittedHeader) this.emit('header');
-    this._emittedHeader = true;
-
-    return writeHead.call(this, statusCode, reasonPhrase);
-  };
-}
+/**
+ * The original setHeader method.
+ *
+ * @type {Function}
+ * @api private
+ */
 var setHeader = res.setHeader;
 
 /**
