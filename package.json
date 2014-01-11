@@ -1,6 +1,6 @@
 {
   "name": "trailers",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Automatically defer all written headers to Trailing headers after the headers have been writen.",
   "main": "index.js",
   "scripts": {
