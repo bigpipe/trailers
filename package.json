@@ -11,6 +11,10 @@
     "trailing",
     "trailer"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/3rd-Eden/trailers.git"
+  },
   "author": "Arnout Kazemier",
   "license": "MIT"
 }
