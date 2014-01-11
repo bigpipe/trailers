@@ -1,5 +1,7 @@
 # Trailers
 
+[![Build Status](https://travis-ci.org/3rd-Eden/trailers.png?branch=master)](https://travis-ci.org/3rd-Eden/trailers)
+
 HTTP is amazing, it has amazing features that most of us aren't using. One of
 these features are trailing headers. These are headers that can be send after
 you've already written your initial HTTP headers. The only caveat is that they
