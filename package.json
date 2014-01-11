@@ -4,7 +4,7 @@
   "description": "Automatically defer all written headers to Trailing headers after the headers have been writen.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha $(find test -name '*.test.js')"
   },
   "keywords": [
     "headers",
@@ -16,5 +16,11 @@
     "url": "git://github.com/3rd-Eden/trailers.git"
   },
   "author": "Arnout Kazemier",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "pre-commit": "0.0.x",
+    "mocha": "1.17.x",
+    "chai": "1.8.x",
+    "request": "~2.31.0"
+  }
 }
