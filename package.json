@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/3rd-Eden/trailers.git"
+    "url": "git://github.com/bigpipe/trailers.git"
   },
   "author": "Arnout Kazemier",
   "license": "MIT",
@@ -21,6 +21,6 @@
     "pre-commit": "0.0.x",
     "mocha": "1.17.x",
     "chai": "1.8.x",
-    "request": "~2.31.0"
+    "request": "2.31.x"
   }
 }
